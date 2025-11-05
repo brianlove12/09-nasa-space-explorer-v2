@@ -1,8 +1,9 @@
 // Use the provided CDN JSON feed for APOD-style entries
 const apodDataUrl = 'https://cdn.jsdelivr.net/gh/GCA-Classroom/apod/data.json';
-// Get the button, date input, and gallery elements from the page
+// Get the button, date inputs, and gallery elements from the page
 const getImageBtn = document.getElementById('getImageBtn');
-const dateInput = document.getElementById('dateInput');
+const startDateInput = document.getElementById('startDateInput');
+const endDateInput = document.getElementById('endDateInput');
 const gallery = document.getElementById('gallery');
 
 // Helper function to format date as YYYY-MM-DD
@@ -141,6 +142,8 @@ modal.addEventListener('click', (event) => {
 
 let allApodData = [];
 
+// Show loading message before fetching
+gallery.innerHTML = '<div class="loading-message">Loading space photos…</div>';
 // Fetch all APOD data once on page load
 fetch(apodDataUrl)
 	.then(response => response.json())
@@ -155,13 +158,13 @@ fetch(apodDataUrl)
 
 // Add a click event listener to the button
 getImageBtn.addEventListener('click', () => {
-	// Filter by date if a start date is selected
-	const startDateStr = dateInput.value;
+	// Filter by date range if both dates are selected
+	const startDateStr = startDateInput.value;
+	const endDateStr = endDateInput.value;
 	let filteredData = allApodData;
-	if (startDateStr) {
+	if (startDateStr && endDateStr) {
 		const startDate = new Date(startDateStr);
-		const endDate = new Date(startDate);
-		endDate.setDate(startDate.getDate() + 8); // 9 days total
+		const endDate = new Date(endDateStr);
 		const startDateFormatted = formatDate(startDate);
 		const endDateFormatted = formatDate(endDate);
 		filteredData = allApodData.filter(item => {
