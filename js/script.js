@@ -1,3 +1,23 @@
+// Fun space facts array
+const spaceFacts = [
+	"Did you know? The largest volcano in the solar system is Olympus Mons on Mars!",
+	"Did you know? Neutron stars can spin at a rate of 600 times per second!",
+	"Did you know? A day on Venus is longer than its year.",
+	"Did you know? There are more stars in the universe than grains of sand on Earth.",
+	"Did you know? Jupiter has 95 known moons!",
+	"Did you know? The Sun accounts for 99.86% of the mass in our solar system.",
+	"Did you know? Saturn could float in water because it’s mostly made of gas.",
+	"Did you know? The footprints on the Moon will remain for millions of years.",
+	"Did you know? Light from the Sun takes about 8 minutes to reach Earth.",
+	"Did you know? The Milky Way galaxy is about 100,000 light-years across!"
+];
+
+// Pick a random fact and display it
+const spaceFactDiv = document.getElementById('spaceFact');
+if (spaceFactDiv) {
+	const randomFact = spaceFacts[Math.floor(Math.random() * spaceFacts.length)];
+	spaceFactDiv.textContent = randomFact;
+}
 // Use the provided CDN JSON feed for APOD-style entries
 const apodDataUrl = 'https://cdn.jsdelivr.net/gh/GCA-Classroom/apod/data.json';
 // Get the button, date inputs, and gallery elements from the page
